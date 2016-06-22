@@ -10,7 +10,6 @@ RUN yum -y install epel-release \
 # Installing gdal1.11, psycopg2, wget
 # gcc gcc-c++ python-devel make
 # python-lxml gdal gdal-devel
-# libxslt-devel libxml2-devel
 ###################################
 
 && yum install -y \
@@ -23,10 +22,7 @@ gcc-c++ \
 python-devel \
 python-lxml \
 gdal \
-gdal-devel \
-libxslt-devel \
-libxml2-devel \ 
-python-reportlab
+gdal-devel 
 
 ##################################
 # Adding get-pip.py, 
