@@ -59,7 +59,7 @@ RUN tar -xvzf /tmp/spatialindex/spatialindex-src-1.7.0.tar.gz -C /tmp/spatialind
 
 
 RUN /tmp/pipinstall.sh && pip list && mkdir -p /opt/webapp
-ADD app.py /opt/webapp/app.py
+ADD . /opt/webapp/
 
 EXPOSE 5000
 CMD python /opt/webapp/app.py
