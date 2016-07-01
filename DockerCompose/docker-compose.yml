@@ -1,9 +1,21 @@
-web:
+version: '2'
+services:
+ web:
     build: web
     ports:
       - "5000"
+    volumes:
+     - share:/sharedvol/
+    networks:
+     - sharenet
     links:
-      - "db:PGDB"
-db:
+     - pgdb
+ pgdb:
     build: db
+    networks:
+     - sharenet
+volumes:
+ share: {}
 
+networks:
+ sharenet: {}
