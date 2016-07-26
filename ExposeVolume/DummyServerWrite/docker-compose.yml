@@ -1,0 +1,21 @@
+version: '2'
+services:
+ box:
+  build: .
+  volumes:
+   - richardsvol:/app
+  ports:
+   - "5000"
+ box2:
+   build: .
+   volumes:
+    - richardsvol:/app
+   ports:
+    - "5000"
+
+
+volumes:
+ richardsvol: {}
+  #data: {}
+  #driver: local
+  #external: true

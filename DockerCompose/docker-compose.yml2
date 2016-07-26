@@ -6,10 +6,16 @@ services:
       - "5000"
     volumes:
      - share:/sharedvol/
+#    networks:
+#     - sharenet
     links:
      - pgdb
  pgdb:
     build: db
+#    networks:
+#     - sharenet
+
+
 
 
 volumes:

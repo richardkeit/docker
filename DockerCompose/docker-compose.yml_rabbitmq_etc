@@ -1,0 +1,55 @@
+version: '2'
+services:
+ web:
+    build: web
+    ports:
+      - "5000"
+    volumes:
+     - share:/sharedvol/
+#    networks:
+#     - sharenet
+    links:
+     - pgdb
+ pgdb:
+    build: db
+#    networks:
+#     - sharenet
+ pgclient:
+    image: postgres
+    links:
+     - pgdb
+ logtailer:
+    image: busybox
+    volumes:
+     - share:/some_other_dir/
+    command: tail -f /some_other_dir/sharedfile
+ rabbit1:
+#  image: rabbitmq:3
+  build: rabbit/new
+  hostname: rabbit1
+  environment:
+  - RABBITMQ_ERLANG_COOKIE=5555
+#  networks:
+#  - default
+ rabbit2:
+  build: rabbit/new
+#  image: rabbitmq:3
+  hostname: rabbit2
+#  links:
+#   - rabbit-node1:rabbit1
+  environment:
+  - RABBITMQ_ERLANG_COOKIE=5555
+  - CLUSTERED=true
+  - CLUSTER_WITH=rabbit1
+#  networks:
+#  - default
+
+
+
+
+
+volumes:
+ share: {}
+
+networks:
+ sharenet: {}

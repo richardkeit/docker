@@ -1,0 +1,14 @@
+version: '2'
+services:
+ rabbit-node1:
+  build: new
+  hostname: rabbit1
+  environment:
+  - RABBITMQ_ERLANG_COOKIE=5555
+ rabbit-node2:
+  build: new
+  hostname: rabbit2
+  environment:
+  - RABBITMQ_ERLANG_COOKIE=5555
+  - CLUSTERED=true
+  - CLUSTER_WITH=rabbit1

@@ -1,9 +1,5 @@
 FROM centos:7
 MAINTAINER Richard Keit <rajkeit@gmail.com>
-ENV PGDATA /opt/postgres/data
-ENV POSTGRESPASS postgres
-
-## Build with Docker build -t richardkeit/basepgbrm .
 
 
 ## Install the Centos 7 Postgres 9.5 Repoistory
@@ -17,8 +13,8 @@ gdal* \
 python-pip* \
 sudo \
 postgis2_95* \
-telnet \
-barman \
-openssh-server \
-openssh-clients \
-&& ssh-keygen -A 
+&& echo $postgrespass > /opt/pw && mkdir -p /opt/postgres/data && chown -R postgres:postgres /opt/
+
+USER postgres
+
+#RUN /usr/pgsql-9.5/bin/initdb -E UTF8 --lc-collate=en_AU.UTF-8 --lc-ctype=en_AU.UTF-8 --lc-messages=en_AU.UTF-8 --lc-monetary=en_AU.UTF-8 --lc-numeric=en_AU.UTF-8 --lc-time=en_AU.UTF-8 -D /opt/postgres/data/ --pwfile=/opt/pw

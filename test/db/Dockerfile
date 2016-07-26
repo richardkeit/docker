@@ -1,5 +1,4 @@
-#FROM centos:7
-FROM richardkeit/basepgbrm
+FROM centos:7
 MAINTAINER Richard Keit <rajkeit@gmail.com>
 ENV PGDATA /opt/postgres/data
 ENV POSTGRESPASS postgres
@@ -49,3 +48,4 @@ VOLUME ["/opt/postgres/data/pg_log", "/usr/pgsql-9.5/bin" , "/etc/postgresql"]
 
 CMD /usr/pgsql-9.5/bin/postgres -D $PGDATA -c config_file=$PGDATA/postgresql.conf
 	
+

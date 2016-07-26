@@ -1,7 +1,4 @@
-#### Richard Keit <rajkeit@gmail.com> ######
-
 import os
-import socket
 import string
 import psycopg2
 import psycopg2.extras
@@ -14,13 +11,10 @@ import sys
 app = Flask(__name__)
 
 containeridx = os.environ["HOSTNAME"]
-
-#databasehost = os.environ["PGDB_PORT_5432_TCP_ADDR"]
-databasehost = socket.gethostbyname("pgdb")
-
+'''
+databasehost = os.environ["PGDB_PORT_5432_TCP_ADDR"]
 
 
-########## Database Connection String ###########
 conn_string = "dbname='ipss' user='postgres' host=" + (databasehost) + " password='postgres'"
 	# get a connection, if a connect cannot be made an exception will be raised here
 conn = psycopg2.connect(conn_string)
@@ -31,10 +25,8 @@ try:
 except:
     print "I am unable to connect to the database"
 
-##################################################
 
 
-########## Insert into Database ##################
 xcursor = conn.cursor()
 xcursor.execute("INSERT INTO temp.containers (containerid, time) VALUES (%s, %s)", (containeridx, strftime("%Y-%m-%d %H:%M:%S", gmtime())))
 
@@ -42,17 +34,14 @@ conn.commit()
 xcursor.close()
 conn.close()
 
-
-###################################################
-########## Shared File Creation ###################
-
+'''
 filename = "/sharedvol/sharedfile"
 
 f = open(filename, "ab")
 f.write(" " + containeridx + strftime("%Y-%m-%d %H:%M:%S") + "\n")
 f.close()
 
-####################################################
+
 
 @app.route('/')
 def index():
@@ -95,8 +84,9 @@ def file():
  htmlcode = str(t)
  return htmlcode
 
-###################################################3
 
 if __name__ == '__main__':
     app.run(debug=False, host='0.0.0.0')
+
+
 

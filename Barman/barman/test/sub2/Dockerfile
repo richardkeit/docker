@@ -1,7 +1,7 @@
 #FROM centos:7
 FROM richardkeit/basepgbrm
 MAINTAINER Richard Keit <rajkeit@gmail.com>
-ENV server="barman"
+ENV server="BARMAN"
 ENV sharedvolume /opt/sharedvol
 ## Install the Centos 7 Postgres 9.5 Repoistory
 

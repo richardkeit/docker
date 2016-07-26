@@ -1,0 +1,23 @@
+version: '2'
+services:
+ barman:
+    build: .
+    environment:
+     - server=barman
+    ports:
+      - "22"
+    volumes:
+     - share:/keys/
+    command: "/usr/sbin/sshd -D "
+ pg:
+    build: .
+    environment:
+     - server=postgres
+    ports: 
+      - "5432"
+    command: "/usr/sbin/sshd -D "
+    volumes:
+     - share:/keys/
+volumes:
+ share: {}
+

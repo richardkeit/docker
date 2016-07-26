@@ -1,0 +1,9 @@
+web:
+    build: web
+    ports:
+      - "5000"
+    links:
+      - "db:PGDB"
+db:
+    build: db
+

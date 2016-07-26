@@ -1,0 +1,26 @@
+version: '2'
+services:
+ rabbit1:
+#  image: rabbitmq:3
+  build: new
+  hostname: rabbit1
+  environment:
+  - RABBITMQ_ERLANG_COOKIE=5555
+#  networks:
+#  - default
+ rabbit2:
+  build: new
+#  image: rabbitmq:3
+  hostname: rabbit2
+#  links:
+#   - rabbit-node1:rabbit1
+  environment:
+  - RABBITMQ_ERLANG_COOKIE=5555
+  - CLUSTERED=true
+  - CLUSTER_WITH=rabbit1
+#  networks:
+#  - default
+
+
+#networks:
+#  default: {}
